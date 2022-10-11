@@ -38,17 +38,17 @@ lab_arr = np.array([dis['stand'].to_list()])
 # model.predict(lab_arr)
 model.predict_proba(lab_arr)
 p = model.predict_proba(lab_arr)[:,1]
-
-
-if p>0.9394049:
+# print(dis['lab'].to_list())
+   
+if(dis['lab'].to_list()==[0.0, 0.0, 0.0, 0.0, 0.0]):
+    cls = 'N/A'
+elif p>0.9394049:
     # roc threshold
-    st.markdown('# Prediction')
-    cls = 'HFrEF'
-    
+    cls = 'HFrEF'    
 else:
-    st.markdown('# Prediction: ')
     cls = 'HFpEF'
 
+st.markdown('# Prediction') 
 c1, c2, c3 = st.columns(3)
 with c2:
     st.markdown('## {}'.format(cls))
@@ -76,5 +76,5 @@ st.markdown('# Explainer:')
 st.pyplot(fig)
 
 st.markdown('# Info:')
-st.markdown('- Classification: {}     \n- Probability: {}    \n - Threshold: 0.9394049'.format("HFpEF", p[0]))
+st.markdown('- Classification: {}     \n- Probability: {}    \n - Threshold: 0.9394049'.format(cls, p[0]))
 
