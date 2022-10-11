@@ -42,6 +42,7 @@ p = model.predict_proba(lab_arr)[:,1]
    
 if(dis['lab'].to_list()==[0.0, 0.0, 0.0, 0.0, 0.0]):
     cls = 'N/A'
+
 elif p>0.9394049:
     # roc threshold
     cls = 'HFrEF'    
@@ -72,9 +73,11 @@ shap_values = explainer(df)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 fig = shap.plots.waterfall(shap_values[0], )
 
-st.markdown('# Explainer:')
-st.pyplot(fig)
 
-st.markdown('# Info:')
-st.markdown('- Classification: {}     \n- Probability: {}    \n - Threshold: 0.9394049'.format(cls, p[0]))
+if (cls!="N/A"):
+    st.markdown('# Explainer:')
+    st.pyplot(fig)
+
+    st.markdown('# Info:')
+    st.markdown('- Classification: {}     \n- Probability: {}    \n - Threshold: 0.9394049'.format(cls, p[0]))
 
