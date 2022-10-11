@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd 
 import numpy as np
-
+import matplotlib
 
 # Import distribution param
 dis = pd.read_csv('distribution.csv',index_col=0)
