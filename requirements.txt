@@ -2,4 +2,4 @@ pandas
 numpy
 streamlit
 shap
-xgboost
+xgboost==0.90
